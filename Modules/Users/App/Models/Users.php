@@ -4,11 +4,15 @@ namespace Modules\Users\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Users\Database\factories\UsersFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+//use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject; 
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Users extends Model
+
+class Users extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
+    use HasFactory,Notifiable;
     public $timestamps = true;
 
     /**
@@ -21,4 +25,14 @@ class Users extends Model
         'password',
         'role'
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
 {
@@ -23,8 +24,32 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $e, $request)
+        {
+            /** Se verifica que este un token en la petición **/
+            if (!$request->bearerToken()) 
+            {
+                return response()->json([
+                    'status' => Response::HTTP_UNAUTHORIZED,
+                    'error' => 'Acceso denegado, el token no se ha proporcionado o es inválido.'
+                ], Response::HTTP_UNAUTHORIZED);
+            }
+
+            /** Se valida si el usuario esta autenticado **/
+            if(!auth()->check())
+            {
+                return response()->json([
+                    'status' => Response::HTTP_UNAUTHORIZED,
+                    'error' => 'Acceso no autorizado. Por favor inicie sesión con su cuenta para continuar.'
+                ], Response::HTTP_UNAUTHORIZED);
+            }
+
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Error interno del servidor'
+                ], 500);
+            }
         });
     }
 }

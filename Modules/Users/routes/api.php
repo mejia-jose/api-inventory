@@ -15,7 +15,7 @@ use Modules\Users\App\Controllers\UsersController;
     |
 */
 
-Route::get('/user/all', [UsersController::class, 'all']);
+Route::get('/user/all', [UsersController::class, 'all'])->middleware('auth:api');;
 Route::post('/user/register', [UsersController::class, 'register']);
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
