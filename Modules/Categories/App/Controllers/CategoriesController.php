@@ -17,12 +17,16 @@ class CategoriesController extends Controller
         $this->categoryServices = $categoryServices;
     }    
 
-    /**
-     * Display a listing of the resource.
-     */
+    /** Obtiene la información de las categorías y las devuelve al usuario **/
     public function all()
     {
-        return 'Hola';
+        return $this->categoryServices->getAllCategoríes();
+    }
+
+    /** Obtiene la información de las categorías y las devuelve al usuario **/
+    public function categoryById(string $categoryId)
+    {
+        return $this->categoryServices->categoryById($categoryId);
     }
 
     /** Recibe la información y los envía al servicio para para crear la categoría **/

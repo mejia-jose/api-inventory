@@ -11,13 +11,61 @@ use Modules\Categories\App\Repositories\CategorieRepositoryInterface;
 
 class CategoriesServices
 {
-  protected $categoryRepository;
+   protected $categoryRepository;
 
-  /** Se inyecta el repositorio de categorias */
-  public function __construct(CategorieRepositoryInterface $categoryRepository)
-  {
-    $this->categoryRepository = $categoryRepository;
-  }
+   /** Se inyecta el repositorio de categorias */
+   public function __construct(CategorieRepositoryInterface $categoryRepository)
+   {
+     $this->categoryRepository = $categoryRepository;
+   }
+
+    /** Obtiene todas las categorías regsitradas en BD **/
+    public function getAllCategoríes()
+    {
+        try
+        {
+            $categories = $this->categoryRepository->all();
+
+            /** Si no se encuentran categorías **/
+            if(!$categories )
+            {
+                return response()->json(
+                [
+                'status' => Response::HTTP_NOT_FOUND,
+                'errors' => 'No hay categorías registradas en la base de datos.'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            return $categories ;
+        }catch(\Exception $e)
+        {
+            return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);
+        }
+    }
+
+    /** Obtiene la información de una categoría regsitrada en BD por medio del ID **/
+    public function categoryById(string $categoryId)
+    {
+        try
+        {
+            $category= $this->categoryRepository->find($categoryId);
+
+            /** Si no se encuentran la categoría **/
+            if(!$category)
+            {
+                return response()->json(
+                [
+                   'status' => Response::HTTP_NOT_FOUND,
+                   'errors' => 'No se encontró ninguna categoría registrada con el ID ' . $categoryId . '.'
+                ]);
+            }
+
+            return $category ;
+        }catch(\Exception $e)
+        {
+            return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 
    /** Permite validar la información recibida **/
    private function validateData(Request $request)
