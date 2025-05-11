@@ -151,4 +151,33 @@ class CategoriesServices
             return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);
         }
     }
+
+    /** Elimina la información de una categoría regsitrada en BD por medio del ID **/
+    public function updateCategory(string $categoryId, Request $request)
+    {
+        try
+        {
+            $data = $request->only(['name','description']);
+            $category = $this->categoryRepository->update($categoryId,$data);
+
+            /** Si no se encuentran la categoría **/
+            if(!$category)
+            {
+                return response()->json(
+                [
+                   'status' => Response::HTTP_NOT_FOUND,
+                   'errors' => 'No se encontró ninguna categoría registrada con el ID ' . $categoryId . '.'
+                ]);
+            }
+
+            return response()->json([
+                'status' => Response::HTTP_OK,
+                'message' => 'La categoría se actualizó correctamente.',
+                'category' => $category
+            ]);
+        }catch(\Exception $e)
+        {
+            return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }

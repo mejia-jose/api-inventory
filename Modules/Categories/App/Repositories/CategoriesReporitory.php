@@ -39,7 +39,8 @@ class CategoriesReporitory implements CategorieRepositoryInterface
         {
             return false;
         }
-        return $category->update($data);
+        $update = $category->update($data);
+        return !$update ? false : $category;
     }
 
      /** Permite eliminar una categoría de la BD **/

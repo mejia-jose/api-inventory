@@ -35,9 +35,15 @@ class CategoriesController extends Controller
         return  $this->categoryServices->registerCategory($request);
     }
 
-    /** Obtiene la información de las categorías y las devuelve al usuario **/
+    /** Obtiene el ID de la categoría envia al servicio para eliminar y se retorna al usuario **/
     public function delete(string $categoryId)
     {
         return $this->categoryServices->deleteCategory($categoryId);
+    }
+
+    /** Obtiene la información de la categoría a atualizar y retorna **/
+    public function update(string $categoryId, Request $request)
+    {
+        return $this->categoryServices->updateCategory($categoryId,$request);
     }
 }
