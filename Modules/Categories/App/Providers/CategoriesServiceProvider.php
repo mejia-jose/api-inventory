@@ -18,7 +18,7 @@ class CategoriesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-         $this->app->bind(CategorieRepositoryInterface::class, CategoriesReporitory::class);
+        $this->app->bind(CategorieRepositoryInterface::class, CategoriesReporitory::class);
         $this->app->register(RouteServiceProvider::class);
     }
 }
