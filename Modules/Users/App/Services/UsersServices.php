@@ -2,8 +2,12 @@
 
 namespace Modules\Users\App\Services;
 
+use Exception;
 use Illuminate\Http\Response;
-use Modules\Users\App\Models\Users;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 use Modules\Users\App\Repositories\UserRepositoryInterface;
 
 class UsersServices
@@ -16,7 +20,7 @@ class UsersServices
       $this->userRepository = $userRepository;
    }
 
-   /** Permite hacer usa del repositorio, para obtener todos los usuarios en BD **/
+   /** Permite obtener todos los usuarios en BD **/
    public function getAllUsers()
    {
      try
@@ -39,8 +43,60 @@ class UsersServices
      }
    }
 
-   public function createUser($data)
+   /** Permite validar la información recibida **/
+   private function validateData(Request $request)
    {
-    
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'in:user,admin'
+        ]);
+
+        return $validator;
+   }
+
+   private function customResponse($type,$body,$code)
+   {
+      return [$type => $body, 'code' => $code];
+   }
+
+   /** Permite procesar y validar la información para registrar el usuario **/
+   public function registerUser(Request $request)
+   {
+        try 
+        {
+            $validator = $this->validateData($request);
+            if ($validator->fails())
+            {
+                return $this->customResponse('errors',$validator->errors(), Response::HTTP_BAD_REQUEST);
+            }
+
+            $roleDefault = 'user';
+
+            $user = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $roleDefault
+            ];
+
+            $userCreate = $this->userRepository->create($user);
+            if (!$userCreate) 
+            {
+                throw new Exception('Ha ocurrido un error al crear el usuario. Por favor, inténtelo más tarde.');
+            }
+
+            $response =  $this->customResponse('result',[
+                'message' => 'Usuario registrado exitosamente.', 
+                'user' => $userCreate
+            ], Response::HTTP_CREATED);
+
+            return response()->json($response);
+
+        } catch (\Exception $e)
+        {
+           return response()->json($this->customResponse('error','Error: ' . $e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR));
+        }
    }
 }

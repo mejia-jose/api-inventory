@@ -15,7 +15,8 @@ use Modules\Users\App\Controllers\UsersController;
     |
 */
 
-Route::get('/users/all', [UsersController::class, 'all']);
+Route::get('/user/all', [UsersController::class, 'all']);
+Route::post('/user/register', [UsersController::class, 'register']);
 
 Route::middleware(['auth:sanctum'])->prefix('v1')->name('api.')->group(function () {
     Route::get('users', fn (Request $request) => $request->user())->name('users');

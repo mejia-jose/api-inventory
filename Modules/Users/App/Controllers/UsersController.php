@@ -17,17 +17,17 @@ class UsersController extends Controller
     {
         $this->userService = $userService;
     }    
-    
-    /** Permite obtener el listado de los usuarios regsitrados en BD **/
+
+    /** Permite exponer el endpoint que obtiene el listado de los usuarios regsitrados en BD **/
     public function all()
     {
        return $this->userService->getAllUsers();
     }
 
-    /** Permite registrar usuarios en la BD **/
-    public function create(Request $request)
+    /** Permite exponer el endpoint que registra usuarios en la BD **/
+    public function register(Request $request)
     {
-
+      return $this->userService->registerUser($request);
     }
 
     /** Permite actualizar la información de una usuario **/
