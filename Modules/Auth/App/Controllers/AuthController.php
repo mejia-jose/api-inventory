@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\App\Controllers;
 
+use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,7 +32,10 @@ class AuthController extends Controller
   
         if (! $token = auth()->attempt($credentials))
         {
-            return response()->json(['error' => 'El usuario o la contraseña ingresados no son correctos.'], Response::HTTP_UNAUTHORIZED);
+            return response()->json([
+                'status' => Response::HTTP_UNAUTHORIZED,
+                'error' => 'Credenciales inválidas: El usuario o la contraseña son incorrectos.'
+            ], Response::HTTP_UNAUTHORIZED);
         }
   
         return $this->responseToken($token);

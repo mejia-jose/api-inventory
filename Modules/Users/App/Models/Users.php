@@ -2,18 +2,18 @@
 
 namespace Modules\Users\App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-//use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject; 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 class Users extends Authenticatable implements JWTSubject
 {
-    use HasFactory,Notifiable;
+    use HasFactory,Notifiable,HasUuids;
     public $timestamps = true;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
