@@ -31,7 +31,7 @@ class AuthController extends Controller
   
         if (! $token = auth()->attempt($credentials))
         {
-            return response()->json(['error' => 'El usuario o la contraseña no son correctos.'], Response::HTTP_UNAUTHORIZED);
+            return response()->json(['error' => 'El usuario o la contraseña ingresados no son correctos.'], Response::HTTP_UNAUTHORIZED);
         }
   
         return $this->responseToken($token);

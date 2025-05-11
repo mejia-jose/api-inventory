@@ -13,6 +13,7 @@ use Modules\Users\App\Repositories\UserRepositoryInterface;
 class UsersServices
 {
    protected $userRepository;
+   private  $roleDefault = 'user';
 
    /** Se inyecta el repositorio de usuarios, para acceder a la información de usuarios **/
    public function __construct(UserRepositoryInterface $userRepository)
@@ -72,13 +73,17 @@ class UsersServices
                 return $this->customResponse('errors',$validator->errors(), Response::HTTP_BAD_REQUEST);
             }
 
-            $roleDefault = 'user';
+            $role = auth()->user()->role;
+            if(auth()->check() && $role === 'admin')
+            {
+               $this->roleDefault = $request->role ?? $this->roleDefault;
+            }
 
             $user = [
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role' => $roleDefault
+                'role' => $this->roleDefault
             ];
 
             $userCreate = $this->userRepository->create($user);
