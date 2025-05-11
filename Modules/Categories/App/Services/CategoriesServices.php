@@ -36,7 +36,13 @@ class CategoriesServices
                 ], Response::HTTP_NOT_FOUND);
             }
 
-            return $categories ;
+            $response = response()->json([
+                'status' => Response::HTTP_OK,
+                'message' => 'Listado de categorías.',
+                'records' => $categories
+            ], Response::HTTP_OK);
+
+            return $response;
         }catch(\Exception $e)
         {
             return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);

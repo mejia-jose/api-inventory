@@ -44,11 +44,13 @@ class Handler extends ExceptionHandler
                 ], Response::HTTP_UNAUTHORIZED);
             }
 
-            if ($request->is('api/*')) {
+            if ($request->is('api/*'))
+            {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Error interno del servidor'
-                ], 500);
+                    'message' => 'Ocurrió un error interno en el servidor',
+                    'error' => config('app.debug') ? $e->getMessage() : null,
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         });
     }
