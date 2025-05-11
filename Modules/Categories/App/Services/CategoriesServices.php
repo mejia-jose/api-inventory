@@ -124,4 +124,31 @@ class CategoriesServices
             ]);
         }
    }
+
+    /** Elimina la información de una categoría regsitrada en BD por medio del ID **/
+    public function deleteCategory(string $categoryId)
+    {
+        try
+        {
+            $category= $this->categoryRepository->delete($categoryId);
+
+            /** Si no se encuentran la categoría **/
+            if(!$category)
+            {
+                return response()->json(
+                [
+                   'status' => Response::HTTP_NOT_FOUND,
+                   'errors' => 'No se encontró ninguna categoría registrada con el ID ' . $categoryId . '.'
+                ]);
+            }
+
+            return response()->json([
+                'status' => Response::HTTP_NO_CONTENT,
+                'message' => 'La categoría se eliminó correctamente.'
+            ]);
+        }catch(\Exception $e)
+        {
+            return response()->json(['status' => Response::HTTP_INTERNAL_SERVER_ERROR, 'errors' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 }

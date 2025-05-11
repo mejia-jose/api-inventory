@@ -34,4 +34,10 @@ class CategoriesController extends Controller
     {
         return  $this->categoryServices->registerCategory($request);
     }
+
+    /** Obtiene la información de las categorías y las devuelve al usuario **/
+    public function delete(string $categoryId)
+    {
+        return $this->categoryServices->deleteCategory($categoryId);
+    }
 }

@@ -35,6 +35,10 @@ class CategoriesReporitory implements CategorieRepositoryInterface
     public function update(string $id, array $data)
     {
         $category = $this->find($id);
+        if(!$category)
+        {
+            return false;
+        }
         return $category->update($data);
     }
 
@@ -42,6 +46,10 @@ class CategoriesReporitory implements CategorieRepositoryInterface
     public function delete(string $id)
     {
         $category = $this->find($id);
+        if(!$category)
+        {
+            return false;
+        }
         return $category->delete();
     }
 }
