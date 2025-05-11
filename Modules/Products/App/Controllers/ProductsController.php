@@ -18,9 +18,9 @@ class ProductsController extends Controller
     }    
 
     /** Obtiene la información de los productos y las devuelve al usuario **/
-    public function all()
+    public function all(Request $request)
     {
-        return $this->productServices->getAllProduct();
+        return $this->productServices->getAllProduct($request);
     }
 
     /** Obtiene la información de un producto por medio del ID y lo devuelve al usuario **/

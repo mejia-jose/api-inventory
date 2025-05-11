@@ -2,6 +2,8 @@
 
 namespace Modules\Users\App\Repositories;
 
+use Illuminate\Http\Request;
+
 use Modules\Users\App\Models\Users;
 use Modules\Users\App\Repositories\UserRepositoryInterface;
 
@@ -10,9 +12,17 @@ class UserRepository implements UserRepositoryInterface
 {
 
     /** Permite obtener todos los usuarios registrados en la BD **/
-    public function all()
+    public function all(Request $request)
+    { 
+       $page = $request->query('pageNumber', 1);
+       $perPage = $request->query('pageElements', 100);
+       return Users::paginate($perPage, ['*'], 'page', $page);
+    }
+
+    /** Permite obtener la información de un usuario especifico **/
+    public function where(string $field, string $value)
     {
-       return Users::all();
+        return Users::where($field,$value)->first();
     }
 
     /** Permite obtener la información de un usuario especifico **/
@@ -25,25 +35,5 @@ class UserRepository implements UserRepositoryInterface
     public function create($data)
     {
         return Users::create($data);
-    }
-
-    /** Permite actualizar la información de un usuario en la BD **/
-    public function update($id, $data)
-    {
-        $user = $this->find($id);
-        return $user->update($data);
-    }
-
-    /** Permite eliminar la información de un usuario en la BD **/
-    public function delete($id)
-    {
-        $user = $this->find($id);
-        return $user->delete();
-    }
-
-    /** Permite consultar un usuario por medio del email **/
-    public function getUserByEmail(string $email)
-    {
-        return Users::where('email',$email)->first();
     }
 }

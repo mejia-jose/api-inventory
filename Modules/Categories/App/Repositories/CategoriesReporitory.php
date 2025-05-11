@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Categories\App\Repositories;
 
+use Illuminate\Http\Request;
 use Modules\Categories\App\Models\Categories;
 use Modules\Categories\App\Repositories\CategorieRepositoryInterface;
 
@@ -8,9 +9,11 @@ use Modules\Categories\App\Repositories\CategorieRepositoryInterface;
 class CategoriesReporitory implements CategorieRepositoryInterface
 {
     /** Permite obtener el lsitado de categorías regsitrados en BD **/
-    public function all()
+    public function all(Request $request)
     {
-       return Categories::all();
+       $page = $request->query('pageNumber', 1);
+       $perPage = $request->query('pageElements', 100);
+       return Categories::paginate($perPage, ['*'], 'page', $page);
     }
 
     /** Permite validar si una categoría existe **/

@@ -18,9 +18,9 @@ class CategoriesController extends Controller
     }    
 
     /** Obtiene la información de las categorías y las devuelve al usuario **/
-    public function all()
+    public function all(Request $request)
     {
-        return $this->categoryServices->getAllCategoríes();
+        return $this->categoryServices->getAllCategoríes($request);
     }
 
     /** Obtiene la información de las categorías y las devuelve al usuario **/

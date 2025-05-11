@@ -19,12 +19,24 @@ class ProductsServices
      $this->productRepository = $productRepository;
    }
 
+    /** Permite mapear la respuesta que se debe devolver al usuario */
+    private function mapGetAllToResponse($products)
+    {
+        return [
+            'data' => $products->items(),
+            'total' => $products->total(),
+            'per_page' => $products->perPage(),
+            'current_page' => $products->currentPage(),
+            'lastPage' => $products->lastPage(),
+        ];
+    }
+
     /** Obtiene todos los productos registradas en BD **/
-    public function getAllProduct()
+    public function getAllProduct(Request $request)
     {
         try
         {
-            $products = $this->productRepository->all();
+            $products = $this->productRepository->all($request);
 
             /** Si no se encuentran productos **/
             if(!$products)
@@ -40,7 +52,7 @@ class ProductsServices
             [
                 'status' => Response::HTTP_OK,
                 'message' => 'Listado de productos.',
-                'records' => $products
+                'records' => $this->mapGetAllToResponse($products)
 
             ], Response::HTTP_OK);
 

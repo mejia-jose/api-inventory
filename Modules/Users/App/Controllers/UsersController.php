@@ -19,26 +19,14 @@ class UsersController extends Controller
     }    
 
     /** Permite exponer el endpoint que obtiene el listado de los usuarios regsitrados en BD **/
-    public function all()
+    public function all(Request $request)
     {
-       return $this->userService->getAllUsers();
+       return $this->userService->getAllUsers($request);
     }
 
     /** Permite exponer el endpoint que registra usuarios en la BD **/
     public function register(Request $request)
     {
       return $this->userService->registerUser($request);
-    }
-
-    /** Permite actualizar la información de una usuario **/
-    public function update(Request $request, $id)
-    {
-
-    }
-
-    /** Permite eliminar usuarios **/
-    public function delete($id)
-    {
-
     }
 }

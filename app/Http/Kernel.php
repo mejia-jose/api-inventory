@@ -9,6 +9,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = 
     [
         'rol' => \App\Http\Middleware\IsRoleAdmin::class,
+        'pagination' => \App\Http\Middleware\Pagination::class,
     ];
 
     /**

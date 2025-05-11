@@ -1,6 +1,8 @@
 <?php
 namespace Modules\Products\App\Repositories;
 
+use Illuminate\Http\Request;
+
 use Modules\Products\App\Models\Products;
 use Modules\Products\App\Repositories\ProductsRepositoryInterface;
 
@@ -8,12 +10,14 @@ use Modules\Products\App\Repositories\ProductsRepositoryInterface;
 class ProductsReporitory implements ProductsRepositoryInterface
 {
     /** Permite obtener el listado de productos registrados en BD **/
-    public function all()
+    public function all(Request $request)
     {
-       return Products::all();
+       $page = $request->query('pageNumber', 1);
+       $perPage = $request->query('pageElements', 100);
+       return Products::paginate($perPage, ['*'], 'page', $page);
     }
 
-    /** Permite validar si una prodcuto existe **/
+    /** Permite validar si una producto existe **/
     public function exist(string $field, $value)
     {
         return Products::where($field, $value)->exists();

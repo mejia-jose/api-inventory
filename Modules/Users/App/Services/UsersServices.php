@@ -21,28 +21,59 @@ class UsersServices
       $this->userRepository = $userRepository;
    }
 
+   /** Permite mapear la respuesta que se debe devolver al usuario */
+    private function mapGetAllToResponse($users)
+    {
+        return [
+            'data' => $users->items(),
+            'total' => $users->total(),
+            'per_page' => $users->perPage(),
+            'current_page' => $users->currentPage(),
+            'lastPage' => $users->lastPage(),
+        ];
+    }
+
    /** Permite obtener todos los usuarios en BD **/
-   public function getAllUsers()
+   public function getAllUsers(Request $request)
    {
      try
      {
-        $users = $this->userRepository->all();
+        $users = $this->userRepository->all($request);
 
         /** Si no se encuentran usuarios **/
         if(!$users)
         {
             return response()->json(
             [
+                'status' => Response::HTTP_NOT_FOUND,
                 'error' => 'No hay usuarios registrados en la base de datos.'
             ], Response::HTTP_NOT_FOUND);
         }
+        return response()->json([
+            'status' => Response::HTTP_OK,
+            'message' => 'Listado de usuarios.',
+            'records' => $this->mapGetAllToResponse($users)
+        ], Response::HTTP_OK);
 
-        return $users;
      }catch(\Exception $e)
      {
-        return response()->json([ 'error' => 'Error: ' . $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        return response()->json(['status'=> Response::HTTP_INTERNAL_SERVER_ERROR,'error' => 'Error: ' . $e->getMessage()]);
      }
    }
+
+    /** Permite consultar un usuario por medio del email **/
+    public function getUserByEmail(string $email)
+    {
+        try
+        {
+            $user = $this->userRepository->where('email',$email);
+            return $user ? true : false;
+
+        }catch(\Exception $e)
+        {
+            return response()->json(['status'=> Response::HTTP_INTERNAL_SERVER_ERROR,'error' => 'Error: ' . $e->getMessage()]);
+        }
+    }
 
    /** Permite validar la información recibida **/
    private function validateData(Request $request)

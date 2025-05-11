@@ -19,12 +19,24 @@ class CategoriesServices
      $this->categoryRepository = $categoryRepository;
    }
 
+    /** Permite mapear la respuesta que se debe devolver al usuario */
+    private function mapGetAllToResponse($categories)
+    {
+        return [
+            'data' => $categories->items(),
+            'total' => $categories->total(),
+            'per_page' => $categories->perPage(),
+            'current_page' => $categories->currentPage(),
+            'lastPage' => $categories->lastPage(),
+        ];
+    }
+
     /** Obtiene todas las categorías regsitradas en BD **/
-    public function getAllCategoríes()
+    public function getAllCategoríes(Request $request)
     {
         try
         {
-            $categories = $this->categoryRepository->all();
+            $categories = $this->categoryRepository->all($request);
 
             /** Si no se encuentran categorías **/
             if(!$categories )
@@ -39,7 +51,7 @@ class CategoriesServices
             $response = response()->json([
                 'status' => Response::HTTP_OK,
                 'message' => 'Listado de categorías.',
-                'records' => $categories
+                'records' => $this->mapGetAllToResponse($categories)
             ], Response::HTTP_OK);
 
             return $response;
