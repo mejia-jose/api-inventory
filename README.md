@@ -31,7 +31,7 @@ Base url API > [ https://api-inventory-ep2h.onrender.com/api/](https://api-inven
   - Descripción:
   Aquí se encuentran disponibles en línea los endpoints expuestos, permitiendo realizar pruebas y consumir cada uno de ellos. Esta documentación fue creada con el fin de brindar una guía clara sobre el uso de la API y los requisitos específicos de cada endpoint.
 
-- Documeentación con ApiDog > [https://znnws1stkg.apidog.io/](https://znnws1stkg.apidog.io/)
+- Documentación con ApiDog > [https://znnws1stkg.apidog.io/](https://znnws1stkg.apidog.io/)
 - Documentación manual > [https://api-inventory-ep2h.onrender.com/] 
 ---
 
@@ -76,14 +76,14 @@ Base url API > [ https://api-inventory-ep2h.onrender.com/api/](https://api-inven
  - PUT: api/categories/{id}
 ---
 
-  **Products**
-    - GET: api/products
-    - POST: api/products
-    - GET: api/products/{id}
-    - DELETE: api/products/{id}
-    - PUT: api/products/{id}
-    - GET: api//products/category/{id}
-    ---
+**Products**
+- GET: api/products
+- POST: api/products
+- GET: api/products/{id}
+- DELETE: api/products/{id}
+- PUT: api/products/{id}
+- GET: api//products/category/{id}
+---
 
 # 8. {=} Decisiones Técnicas
 
