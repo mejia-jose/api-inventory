@@ -19,7 +19,7 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
 
 # 3. Repositorio en GitHub
    > [https://github.com/mejia-jose/api-inventory](https://github.com/mejia-jose/api-inventory)
---
+---
 
 # 4. API desplegada en Render
 
@@ -37,44 +37,44 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
 
 # 6. [*] Funcionalidades
 
-- ✅ Login del usario usando JWT.
-- ✅ Cierre de sesión del usuario.
-- ✅ Registrar usuarios.
-- ✅ Listar usuarios.
-- ✅ Registrar categorías
-- ✅ Listar categorías
-- ✅ Actualizar categorías
-- ✅ Eliminar categorías
-- ✅ Obtener el detalle de una categoría
-- ✅ Registrar productos
-- ✅ Listar prodcutos
-- ✅ Actualizar prodcutos
-- ✅ Eliminar prodcutos
-- ✅ Obtener el detalle de un producto
-- ✅ Listar productos por categoría
-- ✅ Se incluyó paginación para el listado de usuarios, categorías y productos
+- [.] Login del usario usando JWT.
+- [.] Cierre de sesión del usuario.
+- [.] Registrar usuarios.
+- [.] Listar usuarios.
+- [.] Registrar categorías
+- [.] Listar categorías
+- [.] Actualizar categorías
+- [.] Eliminar categorías
+- [.] Obtener el detalle de una categoría
+- [.] Registrar productos
+- [.] Listar prodcutos
+- [.] Actualizar prodcutos
+- [.] Eliminar prodcutos
+- [.] Obtener el detalle de un producto
+- [.] Listar productos por categoría
+- [.] Se incluyó paginación para el listado de usuarios, categorías y productos
 
 # 7. Enpoints de la API
-  **Nota:** Los endpoints de lectura pueden ser consultados por los roles de **admin** y **user**, y los de escristura solo por el rol de **admin**
+**Nota:** Los endpoints de lectura pueden ser consultados por los roles de **admin** y **user**, y los de escristura solo por el rol de **admin**
 
-  **Auth**
-    - POST: api/login
-    - POST: api/logout
-    - POST: api/refresh
-    ---
+**Auth**
+ - POST: api/login
+ - POST: api/logout
+ - POST: api/refresh
+ ---
   
-   **Users**
-    - GET: api/user/all
-    - POST: api/register
-    ---
+**Users**
+ - GET: api/user/all
+ - POST: api/register
+ ---
 
-   **Categories**
-    - GET: api/categories
-    - POST: api/categories
-    - GET: api/categories/{id}
-    - DELETE: api/products/{id}
-    - PUT: api/categories/{id}
-    ---
+ **Categories**
+- GET: api/categories
+- POST: api/categories
+- GET: api/categories/{id}
+ - DELETE: api/products/{id}
+ - PUT: api/categories/{id}
+---
 
   **Products**
     - GET: api/products
