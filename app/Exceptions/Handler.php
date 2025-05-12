@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
         $this->renderable(function (Throwable $e, $request)
         {
             /** Se verifica que este un token en la petición **/
-            if (!$request->bearerToken()) 
+            if (!$request->bearerToken() && !$request->is('api/login')) 
             {
                 return response()->json([
                     'status' => Response::HTTP_UNAUTHORIZED,
@@ -36,7 +36,7 @@ class Handler extends ExceptionHandler
             }
 
             /** Se valida si el usuario esta autenticado **/
-            if(!auth()->check())
+            if(!auth()->check() && !$request->is('api/login'))
             {
                 return response()->json([
                     'status' => Response::HTTP_UNAUTHORIZED,
@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
                 ], Response::HTTP_UNAUTHORIZED);
             }
 
-            if ($request->is('api/*'))
+            if ($request->is('api/*') && !$request->is('api/login'))
             {
                 return response()->json([
                     'status' => 'error',
