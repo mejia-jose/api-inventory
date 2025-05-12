@@ -1,66 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# **API de Gestión de Inventario Simple con Roles**
 
-## About Laravel
+# 1. Descripción
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Es una API construida y desarrollada en **Laravel** para la gestión basica de inventarios. Permite la administración de productos, categorías y usuarios, con funcionalidades como autenticación, autorización basada en roles, crud de categorías y productos, mediante endpoints Rest Ful. Está API está diseñada de forma modular escalable.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 2. Stack Tecnológico y paquetes utilizados
+  - PHP versión 8.1.28
+  - Composer versión 2.8.5
+  - Laravel versión 10.10
+  - nwidart/laravel-modules
+  - tymon/jwt-auth
+  - Paquetes propios de laravel
+  - Base datos: MySQL o PostgreSQL
 
-## Learning Laravel
+# 3. Repositorio en GitHub
+   > [text](https://github.com/mejia-jose/api-inventory)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# 4. API desplegada en Render
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+> [ https://api-inventory-ep2h.onrender.com/](https://api-inventory-ep2h.onrender.com/)
+- Base de datos: PostgreSQL
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# 5. Documentación generada con ApiDog
+  - Descripción:
+  Aquí se encuentran disponibles en línea los endpoints expuestos, permitiendo realizar pruebas y consumir cada uno de ellos. Esta documentación fue creada con el fin de brindar una guía clara sobre el uso de la API y los requisitos específicos de cada endpoint.
 
-## Laravel Sponsors
+> Dcoumentación con ApiDog => [https://znnws1stkg.apidog.io/](https://znnws1stkg.apidog.io/)
+> Documentación manual => [https://api-inventory-ep2h.onrender.com/] 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# 6. [*] Funcionalidades
 
-### Premium Partners
+- ✅ Login del usario usando JWT.
+- ✅ Cierre de sesión del usuario.
+- ✅ Registrar usuarios.
+- ✅ Listar usuarios.
+- ✅ Registrar categorías
+- ✅ Listar categorías
+- ✅ Actualizar categorías
+- ✅ Eliminar categorías
+- ✅ Obtener el detalle de una categoría
+- ✅ Registrar productos
+- ✅ Listar prodcutos
+- ✅ Actualizar prodcutos
+- ✅ Eliminar prodcutos
+- ✅ Obtener el detalle de un producto
+- ✅ Listar productos por categoría
+- ✅ Se incluyó paginación para el listado de usuarios, categorías y productos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# 7. Enpoints de la API
+  **Nota:** Los endpoints de lectura pueden ser consultados por los roles de **admin** y **user**, y los de escristura solo por el rol de **admin**
 
-## Contributing
+  **Auth**
+    - POST: api/login
+    - POST: api/logout
+    - POST: api/refresh
+  
+   **Users**
+    - GET: api/user/all
+    - POST: api/register
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   **Categories**
+    - GET: api/categories
+    - POST: api/categories
+    - GET: api/categories/{id}
+    - DELETE: api/products/{id}
+    - PUT: api/categories/{id}
 
-## Code of Conduct
+  **Products**
+    - GET: api/products
+    - POST: api/products
+    - GET: api/products/{id}
+    - DELETE: api/products/{id}
+    - PUT: api/products/{id}
+    - GET: api//products/category/{id}
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 8. {=} Decisiones Técnicas
 
-## Security Vulnerabilities
+# ¿Por qué Laravel?
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  - Porque fue solicitado como el stack principal del proyecto.
+  - Facilita el desarrollo de APIs con soporte nativo para autenticación, middleware, migraciones, colas y más.
 
-## License
+#  ¿Por qué nwidart/laravel-modules?
+ 
+   # Usé nwidart/laravel-modules porque:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   - Permite estructurar el proyecto de forma modular.
+   - Facilita la separación de responsabilidades y lógica de negocio.
+   - Mejora la escalabilidad y mantenibilidad de la API.
+   - Permite una clara separación en capas (controllers, services, repositories, etc.).
+   - Cada módulo cuenta con su propio repositorio y estructura independiente.
+   - Se aplicó el patrón de inyección de dependencias, permitiendo un código más limpio, reutilizable y testeable.
+
+# ¿Por qué el Patter Repository?
+  - Permiten separar la lógica de acceso a datos, haciendo el código más limpio y fácil de mantener.
+
+# ¿Por qué el inyección de dependencias (DI)?
+  - Desacopla las clases, lo que significa que una clase no necesita saber cómo se crean o instancian sus dependencias
+
+# ¿Por qué JWT (JSON Web Token)?
+
+   - Es una solución robusta y segura para la autenticación de APIs.
+   - Permite mantener sesiones sin necesidad de almacenar información en el servidor.
+
+# ¿Por qué usar campos ENUM y no una tabla para los roles?
+
+    - Porque los roles son valores estáticos y conocidos desde el inicio (por ejemplo: admin, user).
+    - Usar un campo ENUM simplifica consultas y mejora el rendimiento al evitar joins innecesarios.
+    - Reduce la complejidad de mantenimiento cuando los roles no cambian frecuentemente.
+    - En caso de que se hubiera indicado que los roles serian dinámicos o configurables, se optaría por una tabla relacional.
+
+# Middleware
+  - Se creó un middleware para validar la autenticación del usuario.
+  - Otro para validar los datos recibidos en la paginación, en caso de que se proporcionen.
+  - Se creó un middleware para manejar la autorización de accesos. 
+---
+
+# [-_-] Módulos del proyecto
+ - Auth
+ - Users
+ - Categories
+ - Products
+
+---
+
+# 9. (*) Instalación local
+
+1. Clonar el repositorio:
+   ```bash o cmd
+   git clone https://github.com/mejia-jose/api-inventory.git
+   cd name-proyecto
+   ```
+
+2. Instalación de dependencias:
+   ```bash o cmd
+   composer install
+   ```
+
+3. Preparar el archivo .env para configurar el entorno del proyecto, conexión y configuración de base de datos.
+
+4. Ejecutar migraciones:
+  - php artisan module:make-migration create_users_table Users
+  - php artisan module:make-migration create_categories_table Categories
+  - php artisan module:make-migration create_products_table Products
+   
+   - Se debe ejecutar el comando:
+   ```bash o cmd
+   php artisan module:migrate
+   ```
+
+5. Ejecutar semillas:
+
+    Este paso es fundamental, ya que inserta en la base de datos al primer usuario con el rol de administrador, lo que permite comenzar a gestionar los demás endpoints.
+   
+   - Se debe ejecutar el comando:
+   ```bash o cmd
+   php artisan db:seed
+   ```
+---
+
+6. Generar el secret de JWT(Json Web Token)
+   - Se debe ejecutar el comando:
+   ```bash o cmd
+   php artisan jwt:secret
+   ```
+
+7. Correr el proyecto
+   - Se debe ejecutar el comando:
+   ```bash o cmd
+   php artisan serve
+   ```
+# 10. Colleción de Postman
+- La colección de postman se encuentra en la raiz, en la ruta **\postman\Api-Inventory.postman_collection.json**
+
+---
+
+# 11.  Checklist de requisitos cumplidos
+
+- [X] Código en un repositorio público (Github).
+- [X] Se crearón todos los endpoints requeridos, aplicando las reglas de rol.
+- [X] API desplegada en Render.
+- [X] Calidad del código: Organización, legibilidad y buenas prácticas.
+- [X] Arquitectura y patrones: Separación de capas y justificación de patrones.
+- [X] Seguridad: Implementación correcta de autenticación y autorización.
+- [X] Uso adecuado de migraciones, semillas y ORM.
+- [X] Documentación: README completo, claro y con justificación de decisiones.
+- [X] Manejo de errores: Códigos de error adecuados.
