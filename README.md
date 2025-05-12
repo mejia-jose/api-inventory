@@ -15,9 +15,11 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
   - tymon/jwt-auth
   - Paquetes propios de laravel
   - Base datos: MySQL o PostgreSQL
+---
 
 # 3. Repositorio en GitHub
-   > [text](https://github.com/mejia-jose/api-inventory)
+   > [https://github.com/mejia-jose/api-inventory](https://github.com/mejia-jose/api-inventory)
+--
 
 # 4. API desplegada en Render
 
@@ -29,8 +31,9 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
   - Descripción:
   Aquí se encuentran disponibles en línea los endpoints expuestos, permitiendo realizar pruebas y consumir cada uno de ellos. Esta documentación fue creada con el fin de brindar una guía clara sobre el uso de la API y los requisitos específicos de cada endpoint.
 
-> Dcoumentación con ApiDog => [https://znnws1stkg.apidog.io/](https://znnws1stkg.apidog.io/)
-> Documentación manual => [https://api-inventory-ep2h.onrender.com/] 
+- Documeentación con ApiDog > [https://znnws1stkg.apidog.io/](https://znnws1stkg.apidog.io/)
+- Documentación manual > [https://api-inventory-ep2h.onrender.com/] 
+---
 
 # 6. [*] Funcionalidades
 
@@ -58,10 +61,12 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
     - POST: api/login
     - POST: api/logout
     - POST: api/refresh
+    ---
   
    **Users**
     - GET: api/user/all
     - POST: api/register
+    ---
 
    **Categories**
     - GET: api/categories
@@ -69,6 +74,7 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
     - GET: api/categories/{id}
     - DELETE: api/products/{id}
     - PUT: api/categories/{id}
+    ---
 
   **Products**
     - GET: api/products
@@ -77,7 +83,7 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
     - DELETE: api/products/{id}
     - PUT: api/products/{id}
     - GET: api//products/category/{id}
----
+    ---
 
 # 8. {=} Decisiones Técnicas
 
