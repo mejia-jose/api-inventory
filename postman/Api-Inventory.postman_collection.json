@@ -1,0 +1,566 @@
+{
+	"info": {
+		"_postman_id": "1d94b0ed-01f1-44a5-b410-4a34c21cb974",
+		"name": "Api-Inventory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25470631"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Listar usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/user/all?pageNumber=1&pageElements=10",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"user",
+								"all"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageElements",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA3OTYxLCJleHAiOjE3NDcwMTA2NjEsIm5iZiI6MTc0NzAwNzk2MSwianRpIjoiNU43R1RIeFNVTUhyV29MeiIsInN1YiI6IjllZTNhY2ExLTA3NTktNGNhYi1hNzI3LWQ0MzVkM2NkOTRjMCIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.qhfphw3uW1qtiauLef2ZLU9bK6HSF1ymCJwkDk9x8hc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Victor Mejia Cabrera\",\r\n    \"email\": \"jmejia@gov.com\",\r\n    \"password\": \"1234567.\",\r\n    \"role\": \"admin\",\r\n    \"password_confirmation\":\"1234567.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/register",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Refresh Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZnJlc2giLCJpYXQiOjE3NDcwMDEyMzYsImV4cCI6MTc0NzAwMzk1OSwibmJmIjoxNzQ3MDAxMjU5LCJqdGkiOiI4UENmS2VHVmVjUG1ZaHlSIiwic3ViIjoiOWVlMzU2ODUtNDZlNi00Y2I5LWIxMTMtNDExMzc0NGQxZmZkIiwicHJ2IjoiMjQwYTk3MTBmY2ZlMTZhZjZjOTA3ZmNmYmVkMzRkMGRlOGU0Y2UwOCJ9.h7cISYHndzeJPlqykjLGLZ9ddrmquCkomwguT2q8SNQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/efresh",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"efresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA3OTYxLCJleHAiOjE3NDcwMTA2NjEsIm5iZiI6MTc0NzAwNzk2MSwianRpIjoiNU43R1RIeFNVTUhyV29MeiIsInN1YiI6IjllZTNhY2ExLTA3NTktNGNhYi1hNzI3LWQ0MzVkM2NkOTRjMCIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.qhfphw3uW1qtiauLef2ZLU9bK6HSF1ymCJwkDk9x8hc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/logout",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jmejia@nexura5.com\",\r\n    \"password\": \"1234567.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/login",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoríes",
+			"item": [
+				{
+					"name": "Listar Categorías",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/categories?pageNumber=1&pageElements=10",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageElements",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar categorías",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Categoría 10\",\r\n    \"description\": \"Televisor de 42 pulgadas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/categories",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar categoría por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/categories/9ee3b40a-e7f0-47d9-aef0-cbb27eff62c2",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"categories",
+								"9ee3b40a-e7f0-47d9-aef0-cbb27eff62c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar categoría",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/categories/9ee3b3fd-2afc-4d2f-b1a2-8ad06f91c962",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"categories",
+								"9ee3b3fd-2afc-4d2f-b1a2-8ad06f91c962"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar categoría",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Televisor Prueba\",\r\n    \"description\": \"Televisor de 42 pulgadas --\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/categories/9ee3b445-96d9-46cf-9693-b05f235cd989",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"categories",
+								"9ee3b445-96d9-46cf-9693-b05f235cd989"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Listar productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA3OTYxLCJleHAiOjE3NDcwMTA2NjEsIm5iZiI6MTc0NzAwNzk2MSwianRpIjoiNU43R1RIeFNVTUhyV29MeiIsInN1YiI6IjllZTNhY2ExLTA3NTktNGNhYi1hNzI3LWQ0MzVkM2NkOTRjMCIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.qhfphw3uW1qtiauLef2ZLU9bK6HSF1ymCJwkDk9x8hc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"Admin123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/products?pageNumber=1&pageElements=10",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageElements",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar productos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Radio FM 6\",\r\n    \"price\": 12.500,\r\n    \"stock\": 25,\r\n    \"categoryId\": \"9ee3b44d-4bcf-44eb-b8d4-34d51cb9f7e5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/products",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalle de un producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Radio FM 2\",\r\n    \"price\": 12.500,\r\n    \"stock\": 25,\r\n    \"categoryId\": \"9ee36a8a-be50-48aa-a8f4-a5c2716a38fd\"\r\n}"
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/products/9ee3b626-9e10-4435-8c3f-1903b24543f1",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products",
+								"9ee3b626-9e10-4435-8c3f-1903b24543f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA5NzAwLCJleHAiOjE3NDcwMTI0MDAsIm5iZiI6MTc0NzAwOTcwMCwianRpIjoiRGNFMlZURlluelVsY280aCIsInN1YiI6IjllZTNiMzU5LTI0MjUtNGNlZi04MGUxLTlmOTRlZWVhZDM3ZSIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.QNjzXct7RxQFkUjys4boLjrCC943YdJSaBHyjfbUyXA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{INVENTORY_API}}/products/9ee3b615-0a79-4dfb-b46c-81363dcd1de9",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products",
+								"9ee3b615-0a79-4dfb-b46c-81363dcd1de9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA3OTYxLCJleHAiOjE3NDcwMTA2NjEsIm5iZiI6MTc0NzAwNzk2MSwianRpIjoiNU43R1RIeFNVTUhyV29MeiIsInN1YiI6IjllZTNhY2ExLTA3NTktNGNhYi1hNzI3LWQ0MzVkM2NkOTRjMCIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.qhfphw3uW1qtiauLef2ZLU9bK6HSF1ymCJwkDk9x8hc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Celular LG\",\r\n    \"description\":\"Celular de alta gama\",\r\n    \"price\": 1200000,\r\n    \"stock\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/products/9ee3b61d-9ac6-4dbb-ac92-ad201529785f",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products",
+								"9ee3b61d-9ac6-4dbb-ac92-ad201529785f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener productos por categorias",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDEvYXBpL2xvZ2luIiwiaWF0IjoxNzQ3MDA3OTYxLCJleHAiOjE3NDcwMTA2NjEsIm5iZiI6MTc0NzAwNzk2MSwianRpIjoiNU43R1RIeFNVTUhyV29MeiIsInN1YiI6IjllZTNhY2ExLTA3NTktNGNhYi1hNzI3LWQ0MzVkM2NkOTRjMCIsInBydiI6IjI0MGE5NzEwZmNmZTE2YWY2YzkwN2ZjZmJlZDM0ZDBkZThlNGNlMDgifQ.qhfphw3uW1qtiauLef2ZLU9bK6HSF1ymCJwkDk9x8hc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Radio FM 4\",\r\n    \"price\": 12.500,\r\n    \"stock\": 25,\r\n    \"categoryId\": \"9ee36a72-ee3e-499a-ab34-cb93b837301e\"\r\n}"
+						},
+						"url": {
+							"raw": "{{INVENTORY_API}}/products/category/9ee3b445-96d9-46cf-9693-b05f235cd989",
+							"host": [
+								"{{INVENTORY_API}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"9ee3b445-96d9-46cf-9693-b05f235cd989"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
