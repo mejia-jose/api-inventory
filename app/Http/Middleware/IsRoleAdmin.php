@@ -17,7 +17,7 @@ class IsRoleAdmin
         {
             return response()->json([
                 'status' => Response::HTTP_FORBIDDEN,
-                'error' => 'Usted no tiene permisos para realizar esta acción.'
+                'error' => 'Acceso denegado: no tiene los privilegios requeridos para esta acción.'
             ]);
         }
         return $next($request);
