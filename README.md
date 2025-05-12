@@ -23,7 +23,7 @@ Es una API construida y desarrollada en **Laravel** para la gestión basica de i
 
 # 4. API desplegada en Render
 
-Base url API > [ https://api-inventory-ep2h.onrender.com/](https://api-inventory-ep2h.onrender.com/api)
+Base url API > [ https://api-inventory-ep2h.onrender.com/api/](https://api-inventory-ep2h.onrender.com/api/)
 - Base de datos: PostgreSQL
 ---
 
